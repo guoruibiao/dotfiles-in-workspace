@@ -3,7 +3,7 @@ QuickStart，目标就是最快速的搭建起一个自己顺手的VIM开发环�
 1. 使用linux上自带的包管理工具来安装系统上适配的VIM。apt-get，yum，rpm什么的都行，具体看自己的操作系统吧。
 
 2. 使用vim的包管理工具Vundle插件，来完善对VIM插件包的管理。
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     这里放到了~目录，也就是说如果当前登录角色是root，那么~代表的是/root目录； 如果是developer角色，那么按照惯例，~代表的就是developer的登录目录，比如我这里就是/home/developer
     不同的角色，一般只对自己有效。如果想设置一个通用的VIM环境，那么直接放到/etc目录下即可。
 3.  然后就是拷贝这里的.vimrc文件到相应的位置，一般放到~/目录下就可以了，这样就可以只对自己有效，无论是root还是developer，登陆后它自己会进行区分的。
