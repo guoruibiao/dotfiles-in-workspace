@@ -156,4 +156,6 @@ filetype plugin on
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " 配置VIM一间运行Python脚本
 autocmd FileType python nnoremap <buffer> <F10> :w<CR>:!python %<CR>
+" 配置另外的快捷键： <C-r>即Ctrl+r； <CR>代表Enter键； <S-r>即Shift+r; 如下，Ctrl+r一键运行当前python脚本
+autocmd FileType python nnoremap <buffer> <C-r> :w<CR>:!python %<CR>
 autocmd FileType php nnoremap <buffer> <F10> :w<CR>:!php %<CR>
