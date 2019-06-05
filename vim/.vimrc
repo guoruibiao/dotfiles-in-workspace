@@ -58,7 +58,7 @@ set statusline=[%F]\ %t\ %y\ format:\ %{&ff};\ [Column=%c,Row=%l]\ %p%%\ [Len=%L
 
 
 " vim-airline 设置特殊字体，如箭头等
-if !exists('g:airline_symbols')                                                                                                                                             
+if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_theme="molokai"
@@ -67,7 +67,7 @@ let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
 let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒' 
+let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
@@ -165,7 +165,7 @@ autocmd FileType php nnoremap <buffer> <F10> :w<CR>:!php %<CR>
 autocmd FileType go nnoremap <buffer> <F10> :w<CR>:!go run %<CR>
 " 下面是自己玩的
 " normal 状态下 Ctrl+d 删除一行
-"nmap <C-d> dd 
+"nmap <C-d> dd
 " 括号自动补全
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
@@ -189,12 +189,12 @@ func! SetTitle()
         call append(line(".")+8, "")
     elseif &filetype == "php"
         call setline(1, "<?php")
-        call append(line("."), "require '/home/wwwroot/api.newtv.com/common/common.inc.php;'")
+        call append(line("."), "require '/home/wwwroot/api.newtv.com/common/common.inc.php';")
         call append(line("")+1, "")
     endif
     normal G
 endfunc
-"新建.c,.h,.sh,.java文件，自动插入文件头 
+"新建.c,.h,.sh,.java文件，自动插入文件头
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py,*.java,*.php exec ":call SetTitle()"
 function! SetEndLine()
     let lastlinenumber = a:lastline
@@ -207,4 +207,4 @@ function! SetEndLine()
     endif
     call append(lastlinenumber, str)
 endfunction
-autocmd BufWritePre *.py,*.php exec ":call SetEndLine()"
+"autocmd BufWritePre *.py,*.php exec ":call SetEndLine()"
