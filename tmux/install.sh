@@ -13,7 +13,7 @@
 
 # 拷贝配置文件
 ```
-$ wget https://github.com/guoruibiao/dotfiles-in-workspace/blob/master/tmux/.tmux.conf
+$ wget https://raw.githubusercontent.com/guoruibiao/dotfiles-in-workspace/master/tmux/.tmux.conf
 ```
 
 # 如果已经打开了tmux, 重启tmux即可; 如果没有打开，直接打开一个新的会话即可看到定制好的tmux
