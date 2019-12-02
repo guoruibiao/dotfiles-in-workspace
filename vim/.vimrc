@@ -4,6 +4,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Lokaltog/vim-powerline'
 "Plugin 'klen/python-mode'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'tomasr/molokai'
 " 史上最难安装的插件之一YouCompleteMe
 "Plugin 'Valloric/YouCompleteMe'
@@ -32,6 +34,8 @@ else
     set background=dark
     colorscheme molokai
 endif
+" 为vim-markdown插件添加format使用
+let g:vim_markdown_frontmatter=1
 " 为ultisnips添加触发器
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -120,6 +124,7 @@ set foldlevel=99
 set cmdheight=2
 
 set cursorline
+set cursorcolumn
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -154,15 +159,20 @@ set backspace=2
 set mouse=c
 set selection=exclusive
 set selectmode=mouse,key
+" 在上下移动光标时，光标的上方或者下放至少会保留显示的行数
+set scrolloff=7
 
 filetype plugin on
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " 配置VIM一间运行Python脚本
-autocmd FileType python nnoremap <buffer> <F10> :w<CR>:!python %<CR>
+autocmd FileType python nnoremap <buffer> <F10> :w<CR>:!python3 %<CR>
 " 配置另外的快捷键： <C-r>即Ctrl+r； <CR>代表Enter键； <S-r>即Shift+r; 如下，Ctrl+r一键运行当前python脚本
-autocmd FileType python nnoremap <buffer> <C-r> :w<CR>:!python %<CR>
+autocmd FileType python nnoremap <buffer> <C-r> :w<CR>:!python3 %<CR>
 autocmd FileType php nnoremap <buffer> <F10> :w<CR>:!php %<CR>
+autocmd FileType sh nnoremap <buffer> <F10> :w<CR>:!bash %<CR>
 autocmd FileType go nnoremap <buffer> <F10> :w<CR>:!go run %<CR>
+autocmd FileType c nnoremap <buffer> <F10> :w<CR>:!gcc % && ./a.out && rm a.out<CR>
+autocmd FileType lua nnoremap <buffer> <F10> :w<CR>:!lua %<CR>
 " 下面是自己玩的
 " normal 状态下 Ctrl+d 删除一行
 "nmap <C-d> dd 
@@ -170,10 +180,23 @@ autocmd FileType go nnoremap <buffer> <F10> :w<CR>:!go run %<CR>
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap { {}<Esc>i
-inoremap < <><Esc>i
+"inoremap < <><Esc>i
 inoremap 《 《》<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
+"""
+" 测试一些自定义的快捷键
+let mapleader = ';'
+nmap <leader>w :w!<cr>
+nmap <leader>q :q!<cr>
+" 干掉方向键，强迫自己使用hjkl
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
+"""
+
+
 " 给不同的文件填上不同的头
 func! SetTitle()
     if &filetype == "python"
@@ -190,6 +213,9 @@ func! SetTitle()
     elseif &filetype == "php"
         call setline(1, "<?php")
         call append(line("."), "require '/home/wwwroot/api.newtv.com/common/common.inc.php';")
+        call append(line("")+1, "")
+    elseif &filetype == "bash"
+        call setline(1, "#!/usr/bin bash")
         call append(line("")+1, "")
     endif
     normal G
